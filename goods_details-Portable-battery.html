@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta charset="utf-8">
+    <title>营销龙虎榜</title>
+    <meta name="description" content="">
+    <link rel="stylesheet" href="./css/style.css">
+
+    <style>
+      html, body {position: relative;height: 100%;}
+      html{ font-size: 62.5%;}
+      body{font-size:12px;font-size:1.2rem ;}
+      body {
+          background: #eee;
+          font-family: "Mircrosoft Yahei","微软雅黑",Tahoma, Arial, Helvetica, STHiti;
+          color:#323232;
+          margin: 0;
+          padding: 0;
+          min-width: 320px;
+          max-width: 640px;
+          /*min-height: 568px;*/
+          margin: auto;
+          overflow-x: hidden;
+      }
+
+    </style>
+  </head>
+
+  <body>
+
+       <div class="containt ">
+           <!--提示-->
+           <div class="tipBox">
+               <label id="tip"></label>
+           </div>
+
+          <!-- 商品图片 -->
+          <div class="goods_img_box" style="position: relative;">
+            <div class="goods_img"><img src="img/gift.png" class="" id="goods_img"></div>
+            <!--<div class="last_integral">您的可用积分为：<span id="last_integral">100</span></div>-->
+          </div>
+
+          <!-- 商品价格 -->
+          <div class="goods_prize_box">
+            <div class="goods_name" id="goods_name">30元电话卡</div>
+            <div class="goods_prize_txt">
+               <!--<label class="select_goods"><img src="img/choose.png"></label>-->
+               <label class="prize" id="price">300</label>
+               积分
+            </div>
+            <!--<div class="reference_prize" id="reference_prize"></div>-->
+          </div>
+
+          <div class="describe">温馨提示</div>
+
+          <!-- 商品描述 -->
+          <div class="goods_describe">
+           <div class="describe_txt" id="goods_describe"></div>
+            <div class="describe_txt">亲，该奖品将在兑换成功后的3~5个工作日下发到《工银有礼》，请注意查收。</div>
+           <!-- <div class="describe_txt">规格：100元卡</div> -->
+          </div>
+          <div class="empty15"></div>
+
+          <!-- 底部兑换按钮 -->
+
+          <div class="exchange">
+            <div class="integral_box fl">
+              <div class="integral_txt">总价：<label class="integral_num" id="integral_num">300</label><label class="integral">积分</label></div>
+            </div>
+            <div class="integralAddBox fl">
+                <i class="iconfont" id="subtract">&#xe64c;</i>
+                <label id="Num" class="num">1</label>
+                <i class="iconfont" id="add">&#xe64e;</i>
+            </div>
+            <div class="exchange_btn_box fl">
+              <!--<div class="exchange_btn" id="exchange">我要兑换</div>-->
+              <input type="button" name="" value="我要兑换" class="exchange_btn"  id="exchange">
+            </div>
+          </div>
+       </div>
+       <!--填写个人信息-->
+       <div class="popu_box" style="display: none;">
+         <div class="empty20"></div>
+         <div class="txt_box">
+            <div class="hide_btn"></div>
+            <div class="txt_box_list">
+                <div>填写你的收货信息</div>
+            </div>
+            <div class="txt_box_list">
+                <span>收货人</span>
+                <input type="text" name="" placeholder="请输入姓名" id="receiver">
+            </div>
+            <div class="txt_box_list">
+                <span>手机号码</span>
+                <input type="text" name="" placeholder="请输入手机号码" maxlength="11" onkeyup="this.value=this.value.replace(/\D/g,'')"  onafterpaste="this.value=this.value.replace(/\D/g,'')" id="phone">
+            </div>
+            <div class="confirm_btn">
+              <div class="confirm" id="confirm">确定</div>
+            </div>
+         </div>
+       </div>
+       <!--兑换成功-->
+       <div class="exchangeSuccessPupoBox" style="display: none">
+            <div class="exchangeSuccessBox">
+                <div class="tipIcon"><i class="iconfont">&#xe659;</i></div>
+                <div class="exchangeSuccessText">恭喜你，奖品已兑换成功，奖品于3~5个工作日下发到《工银有礼》，请注意查收！</div>
+                <div class="exchangeSuccessBtn" id="yesIGotIt">确定</div>
+
+            </div>
+       </div>
+       <div style="width: 100%; height: 100%; position: fixed;top: 0;left: 0;z-index: 1000;background: rgba(0,0,0,0.65);display: flex;display: -webkit-flex; justify-content: center;align-items: center;">
+            <div style="width: 80%; padding: 2rem 1rem;background: #ffffff; border-radius: 1rem; color: #323232; font-size: 1.38rem; text-align:center;line-height: 3rem;text-indent: 2rem">一期活动已结束，剩余积分可在二期继续兑换营销礼品，二期活动更精彩，礼品更丰富，敬请期待<br/>《请按左上角返回上一页》
+            </div>
+       </div>
+       <script src="./js/jquery-2.1.3.min.js" type="text/javascript"></script>
+       <script type="text/javascript">
+           $(function () {
+
+               //兑换成功--确认
+               $("#yesIGotIt").on('click',function () {
+                   $(".exchangeSuccessPupoBox").hide();
+                   location.replace("index.html");
+               });
+               var num = $("#Num").html(),
+                   integral_num = $("#integral_num"),
+                   Price = 0,
+                   Total = $("#integral_num");
+               //减少奖品数量
+               $("#subtract").on('click',function () {
+                   if( num <=1 ){
+                       num = 0;
+                   }else {
+                       num--;
+                   }
+                   $(this).siblings(".num").html(num);
+                   onecost();
+               });
+               //增加奖品数量
+               $("#add").on('click',function () {
+                   num++;
+                   $(this).siblings(".num").html(num);
+                   onecost();
+               });
+               //统计需要的积分
+               function onecost() {
+                   Price = parseInt($("#price").html()) * parseInt(num * 100);
+                   Price =(Price / 100).toFixed(0);
+                   console.log(Price)
+                   Total.html(Price);
+               };
+               //我要兑换
+               $("#exchange").on('click',function () {
+                   console.log(num);
+                   alert("亲，一期活动已经结束啦，更多精彩，留在二期。")
+                  if (num == 0){
+                      $('.tipBox').fadeIn();
+                      $('#tip').text("请选择要兑换奖品的数量");
+                      setTimeout(function() { $('.tipBox').fadeOut(); },1500);
+                      return false;
+                  }else {
+                      $(this).attr("disabled",true);
+                      $.ajax({
+                          type: "GET",
+                          async: true,
+                          url: "http://activity.cnmobi.com.cn/activity/employee/exchange.html",
+                          dataType: "jsonp",
+                          data:{
+                              number: num
+                          },
+                          jsonpCallback:"callbackfunction",
+                          success: function(json){
+                              if(json.code == 0){
+                                  $(".exchangeSuccessPupoBox").show();
+                              }else if(json.code == 40057){
+                                  $('.tipBox').fadeIn();
+                                  $('#tip').text("亲，您现在的积分不够兑换所选择的奖品哦");
+                                  setTimeout(function() { $('.tipBox').fadeOut(); },1500);
+                              }
+                              $("#exchange").attr("disabled",false);
+                          },
+                          error: function(){
+                              alert("10009");
+                          }
+                      });
+                  }
+               });
+
+               //判断手机横竖屏状态：
+               function hengshuping(){
+                   if(window.orientation==180||window.orientation==0){
+                      //alert("竖屏状态！")
+                   }
+                   if(window.orientation==90||window.orientation==-90){
+                       alert("请切回竖屏状态观看页面比较适宜")//横屏状态
+                   }
+               }
+               window.addEventListener("onorientationchange" in window ? "orientationchange" : "resize", hengshuping, false);
+           })
+       </script>
+  </body>
+
+</html>

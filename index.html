@@ -1,0 +1,1124 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;application/x-www-form-urlencoded;charset=utf-8" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<title>营销龙虎榜</title>
+<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="css/style.animate.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="css/marque.min.css" type="text/css" media="screen" />
+  <script src="./js/jquery-2.1.3.min.js" type="text/javascript"></script>
+  <script src="./js/packed.js" type="text/javascript"></script>
+  <script src="./js/marquee.js" type="text/javascript"></script>
+<style>
+    html, body {position: relative;width: 100%;height: 100%;}
+    body {
+        background: #f1f1f1;
+        font-family: "Mircrosoft Yahei","微软雅黑",Tahoma, Arial, Helvetica, STHiti;
+        color:#000;
+        margin: 0;
+        padding: 0;
+        min-width: 320px;
+        max-width: 640px;
+        margin: auto;
+        /*overflow: hidden;*/
+    }
+    </style>
+</head>
+<body>
+    <!--加载动画-->
+    <div class="loading">
+        <div class="sk-chasing-dots">
+            <div class="sk-child sk-dot1"></div>
+            <div class="sk-child sk-dot2"></div>
+        </div>
+    </div>
+    <!--内容-->
+    <div class="containt" style="display: none">
+        <!--提示-->
+        <div class="tipBox">
+            <label id="tip"></label>
+        </div>
+
+        <!--主页内容-->
+        <div class="indexCont" style="display: block">
+            <!--头部-->
+            <div class="indexContHead commonWidth">
+                <div class="indeContHeadTopBox clearfix">
+                    <!--头像-->
+                    <div class="indexUsrPicture fl">
+                        <img src="img/touxiang.jpg" id="usrImg">
+                    </div>
+                    <!--排名/积分-->
+                    <div class="totalRankingNumBox fl">
+                        <p>历史排名:&nbsp;&nbsp;<i id="ranking"></i></p>
+                        <p>积分:&nbsp;&nbsp;<i id="integral"></i></p>
+                    </div>
+                    <!--二维码-->
+                    <div class="recommendCodeBox fr">
+                        <img src="img/erweima.png" id="recommendCode">
+                        <p>推荐码</p>
+                    </div>
+                    <!--规则-->
+                    <div class="ruleBox" id="goPageRule">
+                        <i class="iconfont ">&#xe642;</i>
+                    </div>
+                </div>
+                <!--积分兑换-->
+                <div class="indeContHeadMiddleBox" >
+                    <div class="ExchangeBtn" id="ToExchange" >积分兑换</div>
+                </div>
+                <!--选择分行/支行-->
+                <div class="chooseBankTagBox clearfix">
+                    <div class="bankTagLeft">
+                        <div class="bankTag Sp-font-family bankTagSelected" target="#fenhang" data="1">分行</div>
+                    </div>
+                    <div class="bankTagRight">
+                        <div class="bankTag Sp-font-family" target="#zhihang" data="2">支行</div>
+                    </div>
+                    <div class="verticalLine"></div>
+                    <div class="levelLine"></div>
+                </div>
+            </div>
+            <!--龙虎榜?-->
+            <div class="billboardTitle Sp-font-family">
+                <!-- 公告 -->
+                <div class="gonggao">
+                  <div class="placard_img">
+                    <img src="img/placard_img.png" alt="gonggao">
+                  </div>
+                  <div id="wrapper">
+                    <div class="first">
+                      <dl id="ticker">
+                        <div class="placard_box">
+                          <div class="placard">
+                            <div class="placard_con">二期活动将于9月1日正式开始，届时礼品更丰富新增话小米手环2、充电宝等，存量积分长期有效，敬请期待</div>
+                          </div>
+                        </div>
+
+                        <div class="placard_box">
+                          <div class="placard">
+                            <div class="placard_con">二期活动将于9月1日正式开始，届时礼品更丰富新增话小米手环2、充电宝等，存量积分长期有效，敬请期待</div>
+                          </div>
+                        </div>
+
+                        <div class="placard_box">
+                          <div class="placard">
+                            <div class="placard_con">二期活动将于9月1日正式开始，届时礼品更丰富新增话小米手环2、充电宝等，存量积分长期有效，敬请期待</div>
+                          </div>
+                        </div>
+                      </dl>
+                    </div>
+                  </div>
+                </div>
+                <p>龙虎榜</p>
+                <p>Marketing Billboard</p>
+            </div>
+            <!--分行排行-->
+            <div id="fenhang" class="bankTagChoose">
+                <!--时间Tag-->
+                <div class="timeSlotTagBox clearfix">
+                    <div class="timeSlotTag timeSlotTagChoose" target="#fenhangDayRanking">本日</div>
+                    <div class="timeSlotTag" target="#fenhangMonthRanking">本月</div>
+                    <div class="timeSlotTag" target="#fenhangTotalRanking">历史总排</div>
+                </div>
+                <!--本日-->
+                <div class="rankingBox" id="fenhangDayRanking">
+                    <div class="rangkingClassBox">
+                        <label class="Sp-font-family">排名</label>
+                        <label class="Sp-font-family">头像</label>
+                        <label class="Sp-font-family">名字</label>
+                        <label class="Sp-font-family">新增</label>
+                        <label class="Sp-font-family">净增</label>
+                        <label class="Sp-font-family">支行</label>
+                    </div>
+                    <div class="myRankingBox">
+                        <i id="dayEmployeeRanking"></i>
+                        <i><img src="img/touxiang.jpg" alt="touxiang" id="dayEmployeeImg"></i>
+                        <i id="dayEmployeeName"></i>
+                        <i id="dayEmployeeNewAdd"></i>
+                        <!--<i id="dayEmployeeCancleCount"></i>-->
+                        <i id="dayEmployeeGrowth"></i>
+                        <i id="dayEmployeeUnit"></i>
+                    </div>
+                    <div class="TopTenRangkingBox">
+                        <ul id="dayRankingsUl">
+                            <!--<li>-->
+                                <!--<i></i>-->
+                                <!--<i><img src="img/touxiang.jpg"></i>-->
+                                <!--<i></i>-->
+                                <!--<i></i>-->
+                                <!--<i></i>-->
+                                <!--<i></i>-->
+                                <!--<i></i>-->
+                                <!--<i></i>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<i>2</i>-->
+                                <!--<i><img src="img/touxiang.jpg" alt="touxiang"></i>-->
+                                <!--<i>路人乙丙</i>-->
+                                <!--<i>300</i>-->
+                                <!--<i>100</i>-->
+                                <!--<i>200</i>-->
+                                <!--<i></i>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<i>3</i>-->
+                                <!--<i><img src="img/touxiang.jpg" alt="touxiang"></i>-->
+                                <!--<i>路人乙丙</i>-->
+                                <!--<i>300</i>-->
+                                <!--<i>100</i>-->
+                                <!--<i>200</i>-->
+                                <!--<i></i>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<i>4</i>-->
+                                <!--<i><img src="img/touxiang.jpg" alt="touxiang"></i>-->
+                                <!--<i>路人乙丙</i>-->
+                                <!--<i>300</i>-->
+                                <!--<i>100</i>-->
+                                <!--<i>200</i>-->
+                                <!--<i></i>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<i>5</i>-->
+                                <!--<i><img src="img/touxiang.jpg" alt="touxiang"></i>-->
+                                <!--<i>路人乙丙</i>-->
+                                <!--<i>300</i>-->
+                                <!--<i>100</i>-->
+                                <!--<i>200</i>-->
+                                <!--<i></i>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<i>6</i>-->
+                                <!--<i><img src="img/touxiang.jpg" alt="touxiang"></i>-->
+                                <!--<i>路人乙丙</i>-->
+                                <!--<i>300</i>-->
+                                <!--<i>100</i>-->
+                                <!--<i>200</i>-->
+                                <!--<i></i>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<i>7</i>-->
+                                <!--<i><img src="img/touxiang.jpg" alt="touxiang"></i>-->
+                                <!--<i>路人乙丙</i>-->
+                                <!--<i>300</i>-->
+                                <!--<i>100</i>-->
+                                <!--<i>200</i>-->
+                                <!--<i></i>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<i>8</i>-->
+                                <!--<i><img src="img/touxiang.jpg" alt="touxiang"></i>-->
+                                <!--<i>路人乙丙</i>-->
+                                <!--<i>300</i>-->
+                                <!--<i>100</i>-->
+                                <!--<i>200</i>-->
+                                <!--<i></i>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<i>9</i>-->
+                                <!--<i><img src="img/touxiang.jpg" alt="touxiang"></i>-->
+                                <!--<i>路人乙丙</i>-->
+                                <!--<i>300</i>-->
+                                <!--<i>100</i>-->
+                                <!--<i>200</i>-->
+                                <!--<i></i>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<i>10</i>-->
+                                <!--<i><img src="img/touxiang.jpg" alt="touxiang"></i>-->
+                                <!--<i>路人乙丙</i>-->
+                                <!--<i>300</i>-->
+                                <!--<i>100</i>-->
+                                <!--<i>200</i>-->
+                                <!--<i></i>-->
+                            <!--</li>-->
+                        </ul>
+                    </div>
+                </div>
+                <!--本月-->
+                <div class="rankingBox" id="fenhangMonthRanking" style="display: none;">
+                    <div class="rangkingClassBox">
+                        <label class="Sp-font-family">排名</label>
+                        <label class="Sp-font-family">头像</label>
+                        <label class="Sp-font-family">名字</label>
+                        <label class="Sp-font-family">新增</label>
+                        <!--<label class="Sp-font-family">取关</label>-->
+                        <label class="Sp-font-family">净增</label>
+                        <label class="Sp-font-family">支行</label>
+                    </div>
+                    <div class="myRankingBox">
+                        <i id="monthEmployeeRanking"></i>
+                        <i><img src="img/touxiang.jpg" alt="touxiang" id="monthEmployeeImg"></i>
+                        <i id="monthEmployeeName"></i>
+                        <i id="monthEmployeeNewAdd"></i>
+                        <!--<i id="monthEmployeeCancleCount"></i>-->
+                        <i id="monthEmployeeGrowth"></i>
+                        <i id="monthEmployeeUnit"></i>
+                    </div>
+                    <div class="TopTenRangkingBox">
+                        <ul id="monthRankingsUl">
+                            <!--<li>-->
+                                <!--<i>1</i>-->
+                                <!--<i><img src="img/touxiang.jpg" alt="touxiang"></i>-->
+                                <!--<i>路人乙丙</i>-->
+                                <!--<i>300</i>-->
+                                <!--<i>100</i>-->
+                                <!--<i>200</i>-->
+                                <!--<i></i>-->
+                                <!--<i></i>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<i>2</i>-->
+                                <!--<i><img src="img/touxiang.jpg" alt="touxiang"></i>-->
+                                <!--<i>路人乙丙</i>-->
+                                <!--<i>300</i>-->
+                                <!--<i>100</i>-->
+                                <!--<i>200</i>-->
+                                <!--<i></i>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<i>3</i>-->
+                                <!--<i><img src="img/touxiang.jpg" alt="touxiang"></i>-->
+                                <!--<i>路人乙丙</i>-->
+                                <!--<i>300</i>-->
+                                <!--<i>100</i>-->
+                                <!--<i>200</i>-->
+                                <!--<i></i>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<i>4</i>-->
+                                <!--<i><img src="img/touxiang.jpg" alt="touxiang"></i>-->
+                                <!--<i>路人乙丙</i>-->
+                                <!--<i>300</i>-->
+                                <!--<i>100</i>-->
+                                <!--<i>200</i>-->
+                                <!--<i></i>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<i>5</i>-->
+                                <!--<i><img src="img/touxiang.jpg" alt="touxiang"></i>-->
+                                <!--<i>路人乙丙</i>-->
+                                <!--<i>300</i>-->
+                                <!--<i>100</i>-->
+                                <!--<i>200</i>-->
+                                <!--<i></i>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<i>6</i>-->
+                                <!--<i><img src="img/touxiang.jpg" alt="touxiang"></i>-->
+                                <!--<i>路人乙丙</i>-->
+                                <!--<i>300</i>-->
+                                <!--<i>100</i>-->
+                                <!--<i>200</i>-->
+                                <!--<i></i>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<i>7</i>-->
+                                <!--<i><img src="img/touxiang.jpg" alt="touxiang"></i>-->
+                                <!--<i>路人乙丙</i>-->
+                                <!--<i>300</i>-->
+                                <!--<i>100</i>-->
+                                <!--<i>200</i>-->
+                                <!--<i></i>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<i>8</i>-->
+                                <!--<i><img src="img/touxiang.jpg" alt="touxiang"></i>-->
+                                <!--<i>路人乙丙</i>-->
+                                <!--<i>300</i>-->
+                                <!--<i>100</i>-->
+                                <!--<i>200</i>-->
+                                <!--<i></i>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<i>9</i>-->
+                                <!--<i><img src="img/touxiang.jpg" alt="touxiang"></i>-->
+                                <!--<i>路人乙丙</i>-->
+                                <!--<i>300</i>-->
+                                <!--<i>100</i>-->
+                                <!--<i>200</i>-->
+                                <!--<i></i>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<i>10</i>-->
+                                <!--<i><img src="img/touxiang.jpg" alt="touxiang"></i>-->
+                                <!--<i>路人乙丙</i>-->
+                                <!--<i>300</i>-->
+                                <!--<i>100</i>-->
+                                <!--<i>200</i>-->
+                                <!--<i></i>-->
+                            <!--</li>-->
+                        </ul>
+                    </div>
+                </div>
+                <!--总排名-->
+                <div class="rankingBox" id="fenhangTotalRanking" style="display: none;">
+                    <div class="rangkingClassBox">
+                        <label class="Sp-font-family">排名</label>
+                        <label class="Sp-font-family">头像</label>
+                        <label class="Sp-font-family">名字</label>
+                        <label class="Sp-font-family">新增</label>
+                        <!--<label class="Sp-font-family">取关</label>-->
+                        <label class="Sp-font-family">净增</label>
+                        <label class="Sp-font-family">支行</label>
+                    </div>
+                    <div class="myRankingBox">
+                        <i id="totalEmployeeRanking"></i>
+                        <i><img src="img/touxiang.jpg" alt="touxiang"  id="totalEmployeeImg"></i>
+                        <i id="totalEmployeeName"></i>
+                        <i id="totalEmployeeNewAdd"></i>
+                        <!--<i id="totalEmployeeCancleCount"></i>-->
+                        <i id="totalEmployeeGrowth"></i>
+                        <i id="totalEmployeeUnit"></i>
+                    </div>
+                    <div class="TopTenRangkingBox">
+                        <ul id="totalRankingsUl">
+                            <!--<li>-->
+                                <!--<i>1</i>-->
+                                <!--<i><img src="img/touxiang.jpg" alt="touxiang"></i>-->
+                                <!--<i>路人乙丙</i>-->
+                                <!--<i>300</i>-->
+                                <!--<i>100</i>-->
+                                <!--<i>200</i>-->
+                                <!--<i></i>-->
+                                <!--<i></i>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<i>2</i>-->
+                                <!--<i><img src="img/touxiang.jpg" alt="touxiang"></i>-->
+                                <!--<i>路人乙丙</i>-->
+                                <!--<i>300</i>-->
+                                <!--<i>100</i>-->
+                                <!--<i>200</i>-->
+                                <!--<i></i>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<i>3</i>-->
+                                <!--<i><img src="img/touxiang.jpg" alt="touxiang"></i>-->
+                                <!--<i>路人乙丙</i>-->
+                                <!--<i>300</i>-->
+                                <!--<i>100</i>-->
+                                <!--<i>200</i>-->
+                                <!--<i></i>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<i>4</i>-->
+                                <!--<i><img src="img/touxiang.jpg" alt="touxiang"></i>-->
+                                <!--<i>路人乙丙</i>-->
+                                <!--<i>300</i>-->
+                                <!--<i>100</i>-->
+                                <!--<i>200</i>-->
+                                <!--<i></i>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<i>5</i>-->
+                                <!--<i><img src="img/touxiang.jpg" alt="touxiang"></i>-->
+                                <!--<i>路人乙丙</i>-->
+                                <!--<i>300</i>-->
+                                <!--<i>100</i>-->
+                                <!--<i>200</i>-->
+                                <!--<i></i>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<i>6</i>-->
+                                <!--<i><img src="img/touxiang.jpg" alt="touxiang"></i>-->
+                                <!--<i>路人乙丙</i>-->
+                                <!--<i>300</i>-->
+                                <!--<i>100</i>-->
+                                <!--<i>200</i>-->
+                                <!--<i></i>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<i>7</i>-->
+                                <!--<i><img src="img/touxiang.jpg" alt="touxiang"></i>-->
+                                <!--<i>路人乙丙</i>-->
+                                <!--<i>300</i>-->
+                                <!--<i>100</i>-->
+                                <!--<i>200</i>-->
+                                <!--<i></i>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<i>8</i>-->
+                                <!--<i><img src="img/touxiang.jpg" alt="touxiang"></i>-->
+                                <!--<i>路人乙丙</i>-->
+                                <!--<i>300</i>-->
+                                <!--<i>100</i>-->
+                                <!--<i>200</i>-->
+                                <!--<i></i>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<i>9</i>-->
+                                <!--<i><img src="img/touxiang.jpg" alt="touxiang"></i>-->
+                                <!--<i>路人乙丙</i>-->
+                                <!--<i>300</i>-->
+                                <!--<i>100</i>-->
+                                <!--<i>200</i>-->
+                                <!--<i></i>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<i>10</i>-->
+                                <!--<i><img src="img/touxiang.jpg" alt="touxiang"></i>-->
+                                <!--<i>路人乙丙</i>-->
+                                <!--<i>300</i>-->
+                                <!--<i>100</i>-->
+                                <!--<i>200</i>-->
+                                <!--<i></i>-->
+                            <!--</li>-->
+                        </ul>
+                    </div>
+                </div>
+                <div style="width: 100%; height: 15px;"></div>
+            </div>
+            <!--支行排行-->
+            <div id="zhihang" class="bankTagChoose" style="display: none">
+                <!--时间Tag-->
+                <div class="timeSlotTagBox clearfix">
+                    <div class="timeSlotTag timeSlotTagChoose" target="#zhihangDayRanking">本日</div>
+                    <div class="timeSlotTag" target="#zhihangMonthRanking">本月</div>
+                    <div class="timeSlotTag" target="#zhihangTotalRanking">历史总排</div>
+                </div>
+                <!--本日-->
+                <div class="rankingBox" id="zhihangDayRanking">
+                    <div class="rangkingClassBox">
+                        <label class="Sp-font-family">排名</label>
+                        <label class="Sp-font-family">头像</label>
+                        <label class="Sp-font-family">名字</label>
+                        <label class="Sp-font-family">新增</label>
+                        <label class="Sp-font-family">净增</label>
+                        <label class="Sp-font-family">支行</label>
+                    </div>
+                    <div class="myRankingBox">
+                      <i id="dayEmployeeRankingZhihang"></i>
+                      <i><img src="img/touxiang.jpg" alt="touxiang" id="dayEmployeeImgZhihang"></i>
+                      <i id="dayEmployeeNameZhihang"></i>
+                      <i id="dayEmployeeNewAddZhihang"></i>
+                      <!--<i id="dayEmployeeCancleCountZhihang"></i>-->
+                      <i id="dayEmployeeGrowthZhihang"></i>
+                        <i id="dayEmployeeUnitZhihang"></i>
+                    </div>
+                    <div class="TopTenRangkingBox">
+                        <ul id="dayRankingsUlZhihang">
+                            <!--<li>-->
+                                <!--<i>1</i>-->
+                                <!--<i><img src="img/touxiang.jpg" alt="touxiang"></i>-->
+                                <!--<i>路人乙丙</i>-->
+                                <!--<i>300</i>-->
+                                <!--<i>100</i>-->
+                                <!--<i>200</i>-->
+                                <!--<i></i>-->
+                                <!--<i></i>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<i>2</i>-->
+                                <!--<i><img src="img/touxiang.jpg" alt="touxiang"></i>-->
+                                <!--<i>路人乙丙</i>-->
+                                <!--<i>300</i>-->
+                                <!--<i>100</i>-->
+                                <!--<i>200</i>-->
+                                <!--<i></i>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<i>3</i>-->
+                                <!--<i><img src="img/touxiang.jpg" alt="touxiang"></i>-->
+                                <!--<i>路人乙丙</i>-->
+                                <!--<i>300</i>-->
+                                <!--<i>100</i>-->
+                                <!--<i>200</i>-->
+                                <!--<i></i>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<i>4</i>-->
+                                <!--<i><img src="img/touxiang.jpg" alt="touxiang"></i>-->
+                                <!--<i>路人乙丙</i>-->
+                                <!--<i>300</i>-->
+                                <!--<i>100</i>-->
+                                <!--<i>200</i>-->
+                                <!--<i></i>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<i>5</i>-->
+                                <!--<i><img src="img/touxiang.jpg" alt="touxiang"></i>-->
+                                <!--<i>路人乙丙</i>-->
+                                <!--<i>300</i>-->
+                                <!--<i>100</i>-->
+                                <!--<i>200</i>-->
+                                <!--<i></i>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<i>6</i>-->
+                                <!--<i><img src="img/touxiang.jpg" alt="touxiang"></i>-->
+                                <!--<i>路人乙丙</i>-->
+                                <!--<i>300</i>-->
+                                <!--<i>100</i>-->
+                                <!--<i>200</i>-->
+                                <!--<i></i>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<i>7</i>-->
+                                <!--<i><img src="img/touxiang.jpg" alt="touxiang"></i>-->
+                                <!--<i>路人乙丙</i>-->
+                                <!--<i>300</i>-->
+                                <!--<i>100</i>-->
+                                <!--<i>200</i>-->
+                                <!--<i></i>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<i>8</i>-->
+                                <!--<i><img src="img/touxiang.jpg" alt="touxiang"></i>-->
+                                <!--<i>路人乙丙</i>-->
+                                <!--<i>300</i>-->
+                                <!--<i>100</i>-->
+                                <!--<i>200</i>-->
+                                <!--<i></i>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<i>9</i>-->
+                                <!--<i><img src="img/touxiang.jpg" alt="touxiang"></i>-->
+                                <!--<i>路人乙丙</i>-->
+                                <!--<i>300</i>-->
+                                <!--<i>100</i>-->
+                                <!--<i>200</i>-->
+                                <!--<i></i>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<i>10</i>-->
+                                <!--<i><img src="img/touxiang.jpg" alt="touxiang"></i>-->
+                                <!--<i>路人乙丙</i>-->
+                                <!--<i>300</i>-->
+                                <!--<i>100</i>-->
+                                <!--<i>200</i>-->
+                                <!--<i></i>-->
+                            <!--</li>-->
+                        </ul>
+                    </div>
+                </div>
+                <!--本月-->
+                <div class="rankingBox" id="zhihangMonthRanking" style="display: none;">
+                    <div class="rangkingClassBox">
+                        <label class="Sp-font-family">排名</label>
+                        <label class="Sp-font-family">头像</label>
+                        <label class="Sp-font-family">名字</label>
+                        <label class="Sp-font-family">新增</label>
+                        <!--<label class="Sp-font-family">取关</label>-->
+                        <label class="Sp-font-family">净增</label>
+                        <label class="Sp-font-family">支行</label>
+                    </div>
+                    <div class="myRankingBox">
+                        <i id="monthEmployeeRankingZhihang"></i>
+                        <i><img src="img/touxiang.jpg" alt="touxiang" id="monthEmployeeImgZhihang"></i>
+                        <i id="monthEmployeeNameZhihang"></i>
+                        <i id="monthEmployeeNewAddZhihang"></i>
+                        <!--<i id="monthEmployeeCancleCountZhihang"></i>-->
+                        <i id="monthEmployeeGrowthZhihang"></i>
+                        <i id="monthEmployeeUnitZhihang"></i>
+                    </div>
+                    <div class="TopTenRangkingBox">
+                        <ul id="monthRankingsUlZhihang">
+                            <!--<li>-->
+                                <!--<i>1</i>-->
+                                <!--<i><img src="img/touxiang.jpg" alt="touxiang"></i>-->
+                                <!--<i>路人乙丙</i>-->
+                                <!--<i>300</i>-->
+                                <!--<i>100</i>-->
+                                <!--<i>200</i>-->
+                                <!--<i></i>-->
+                                <!--<i></i>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<i>2</i>-->
+                                <!--<i><img src="img/touxiang.jpg" alt="touxiang"></i>-->
+                                <!--<i>路人乙丙</i>-->
+                                <!--<i>300</i>-->
+                                <!--<i>100</i>-->
+                                <!--<i>200</i>-->
+                                <!--<i></i>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<i>3</i>-->
+                                <!--<i><img src="img/touxiang.jpg" alt="touxiang"></i>-->
+                                <!--<i>路人乙丙</i>-->
+                                <!--<i>300</i>-->
+                                <!--<i>100</i>-->
+                                <!--<i>200</i>-->
+                                <!--<i></i>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<i>4</i>-->
+                                <!--<i><img src="img/touxiang.jpg" alt="touxiang"></i>-->
+                                <!--<i>路人乙丙</i>-->
+                                <!--<i>300</i>-->
+                                <!--<i>100</i>-->
+                                <!--<i>200</i>-->
+                                <!--<i></i>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<i>5</i>-->
+                                <!--<i><img src="img/touxiang.jpg" alt="touxiang"></i>-->
+                                <!--<i>路人乙丙</i>-->
+                                <!--<i>300</i>-->
+                                <!--<i>100</i>-->
+                                <!--<i>200</i>-->
+                                <!--<i></i>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<i>6</i>-->
+                                <!--<i><img src="img/touxiang.jpg" alt="touxiang"></i>-->
+                                <!--<i>路人乙丙</i>-->
+                                <!--<i>300</i>-->
+                                <!--<i>100</i>-->
+                                <!--<i>200</i>-->
+                                <!--<i></i>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<i>7</i>-->
+                                <!--<i><img src="img/touxiang.jpg" alt="touxiang"></i>-->
+                                <!--<i>路人乙丙</i>-->
+                                <!--<i>300</i>-->
+                                <!--<i>100</i>-->
+                                <!--<i>200</i>-->
+                                <!--<i></i>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<i>8</i>-->
+                                <!--<i><img src="img/touxiang.jpg" alt="touxiang"></i>-->
+                                <!--<i>路人乙丙</i>-->
+                                <!--<i>300</i>-->
+                                <!--<i>100</i>-->
+                                <!--<i>200</i>-->
+                                <!--<i></i>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<i>9</i>-->
+                                <!--<i><img src="img/touxiang.jpg" alt="touxiang"></i>-->
+                                <!--<i>路人乙丙</i>-->
+                                <!--<i>300</i>-->
+                                <!--<i>100</i>-->
+                                <!--<i>200</i>-->
+                                <!--<i></i>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<i>10</i>-->
+                                <!--<i><img src="img/touxiang.jpg" alt="touxiang"></i>-->
+                                <!--<i>路人乙丙</i>-->
+                                <!--<i>300</i>-->
+                                <!--<i>100</i>-->
+                                <!--<i>200</i>-->
+                                <!--<i></i>-->
+                            <!--</li>-->
+                        </ul>
+                    </div>
+                </div>
+                <!--总排名-->
+                <div class="rankingBox" id="zhihangTotalRanking" style="display: none;">
+                    <div class="rangkingClassBox">
+                        <label class="Sp-font-family">排名</label>
+                        <label class="Sp-font-family">头像</label>
+                        <label class="Sp-font-family">名字</label>
+                        <label class="Sp-font-family">新增</label>
+                        <!--<label class="Sp-font-family">取关</label>-->
+                        <label class="Sp-font-family">净增</label>
+                        <label class="Sp-font-family">支行</label>
+                    </div>
+                    <div class="myRankingBox">
+                        <i id="totalEmployeeRankingZhihang"></i>
+                        <i><img src="img/touxiang.jpg" alt="touxiang"  id="totalEmployeeImgZhihang"></i>
+                        <i id="totalEmployeeNameZhihang"></i>
+                        <i id="totalEmployeeNewAddZhihang"></i>
+                        <!--<i id="totalEmployeeCancleCountZhihang"></i>-->
+                        <i id="totalEmployeeGrowthZhihang"></i>
+                        <i id="totalEmployeeUnitZhihang"></i>
+                    </div>
+                    <div class="TopTenRangkingBox">
+                        <ul id="totalRankingsUlZhihang">
+                            <!--<li>-->
+                                <!--<i>1</i>-->
+                                <!--<i><img src="img/touxiang.jpg" alt="touxiang"></i>-->
+                                <!--<i>路人乙丙</i>-->
+                                <!--<i>300</i>-->
+                                <!--<i>100</i>-->
+                                <!--<i>200</i>-->
+                                <!--<i></i>-->
+                                <!--<i></i>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<i>2</i>-->
+                                <!--<i><img src="img/touxiang.jpg" alt="touxiang"></i>-->
+                                <!--<i>路人乙丙</i>-->
+                                <!--<i>300</i>-->
+                                <!--<i>100</i>-->
+                                <!--<i>200</i>-->
+                                <!--<i></i>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<i>3</i>-->
+                                <!--<i><img src="img/touxiang.jpg" alt="touxiang"></i>-->
+                                <!--<i>路人乙丙</i>-->
+                                <!--<i>300</i>-->
+                                <!--<i>100</i>-->
+                                <!--<i>200</i>-->
+                                <!--<i></i>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<i>4</i>-->
+                                <!--<i><img src="img/touxiang.jpg" alt="touxiang"></i>-->
+                                <!--<i>路人乙丙</i>-->
+                                <!--<i>300</i>-->
+                                <!--<i>100</i>-->
+                                <!--<i>200</i>-->
+                                <!--<i></i>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<i>5</i>-->
+                                <!--<i><img src="img/touxiang.jpg" alt="touxiang"></i>-->
+                                <!--<i>路人乙丙</i>-->
+                                <!--<i>300</i>-->
+                                <!--<i>100</i>-->
+                                <!--<i>200</i>-->
+                                <!--<i></i>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<i>6</i>-->
+                                <!--<i><img src="img/touxiang.jpg" alt="touxiang"></i>-->
+                                <!--<i>路人乙丙</i>-->
+                                <!--<i>300</i>-->
+                                <!--<i>100</i>-->
+                                <!--<i>200</i>-->
+                                <!--<i></i>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<i>7</i>-->
+                                <!--<i><img src="img/touxiang.jpg" alt="touxiang"></i>-->
+                                <!--<i>路人乙丙</i>-->
+                                <!--<i>300</i>-->
+                                <!--<i>100</i>-->
+                                <!--<i>200</i>-->
+                                <!--<i></i>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<i>8</i>-->
+                                <!--<i><img src="img/touxiang.jpg" alt="touxiang"></i>-->
+                                <!--<i>路人乙丙</i>-->
+                                <!--<i>300</i>-->
+                                <!--<i>100</i>-->
+                                <!--<i>200</i>-->
+                                <!--<i></i>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<i>9</i>-->
+                                <!--<i><img src="img/touxiang.jpg" alt="touxiang"></i>-->
+                                <!--<i>路人乙丙</i>-->
+                                <!--<i>300</i>-->
+                                <!--<i>100</i>-->
+                                <!--<i>200</i>-->
+                                <!--<i></i>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<i>10</i>-->
+                                <!--<i><img src="img/touxiang.jpg" alt="touxiang"></i>-->
+                                <!--<i>路人乙丙</i>-->
+                                <!--<i>300</i>-->
+                                <!--<i>100</i>-->
+                                <!--<i>200</i>-->
+                                <!--<i></i>-->
+                            <!--</li>-->
+                        </ul>
+                    </div>
+                </div>
+                <div style="width: 100%; height: 15px;"></div>
+            </div>
+        </div>
+    </div>
+
+
+    <script type="text/javascript">
+        window.onload=function(){
+            $(".loading").hide();
+            $(".containt").show();
+        };
+        $(function () {
+
+            //选择时间段排名列表
+            $(".timeSlotTag").on('click',function () {
+                var target = $($(this).attr("target"));
+                $(this).parent().children(".timeSlotTag").removeClass("timeSlotTagChoose");
+                $(this).addClass("timeSlotTagChoose");
+                $(this).parent().siblings(".rankingBox").hide();
+                target.fadeIn();
+            });
+            //分行排行
+            function Fenhang() {
+                $.ajax({
+                    type: "GET",
+                    async: true,
+                    url: "http://activity.cnmobi.com.cn/activity/employee/home.html?type=1",
+                    dataType: "jsonp",
+                    jsonpCallback:"callbackfunction",
+                    success: function(json){
+
+                        $("#dayRankingsUlZhihang").html("");
+                        $("#monthRankingsUlZhihang").html("");
+                        $("#totalRankingsUlZhihang").html("");
+                        $('#usrImg').attr('src',json.headImgUrl);
+                        //本日个人排行
+                        var dayEmployee = json.dayEmployee;
+                        $('#dayEmployeeRanking').html(dayEmployee.ranking); //排名
+                        $('#dayEmployeeImg').attr('src',dayEmployee.headImage); //头像
+                        $('#dayEmployeeName').html(dayEmployee.name); //名字
+                        $('#dayEmployeeNewAdd').html(dayEmployee.subscribeCount); //新增
+//                        $('#dayEmployeeCancleCount').html(dayEmployee.cancleCount); //取消
+                        $('#dayEmployeeGrowth').html(dayEmployee.leftCount); //净增
+                        $('#dayEmployeeUnit').html(dayEmployee.unit); //单位
+                        //本日排行榜
+                        var dayRankings = eval(json.dayRankings);
+                        $.each(dayRankings,function(index,dayRankings){
+                            var listNum = index+1;
+                            if (listNum == 1) {
+                                var htmlText="<li><i>"+dayRankings.ranking+"</i><i><img src='"+dayRankings.headImage+"'></i><i>"+dayRankings.name+"</i><i>"+dayRankings.subscribeCount+"</i><i>"+dayRankings.leftCount+"</i><i>"+dayRankings.unit+"</i><i></i><i></i></li>";
+                            }if (listNum >1){
+                                var htmlText="<li><i>"+dayRankings.ranking+"</i><i><img src='"+dayRankings.headImage+"'></i><i>"+dayRankings.name+"</i><i>"+dayRankings.subscribeCount+"</i><i>"+dayRankings.leftCount+"</i><i>"+dayRankings.unit+"</i><i></i></li>";
+                            }
+                            $("#dayRankingsUl").append(htmlText);
+                        });
+
+                        //本月个人排行
+                        var monthEmployee = json.monthEmployee;
+                        $('#monthEmployeeRanking').html(monthEmployee.ranking); //排名
+                        $('#monthEmployeeImg').attr('src',monthEmployee.headImage); //头像
+                        $('#monthEmployeeName').html(monthEmployee.name); //名字
+                        $('#monthEmployeeNewAdd').html(monthEmployee.subscribeCount); //新增
+//                        $('#monthEmployeeCancleCount').html(monthEmployee.cancleCount); //取消
+                        $('#monthEmployeeGrowth').html(monthEmployee.leftCount); //净增
+                        $('#monthEmployeeUnit').html(monthEmployee.unit); //单位
+                        //本月排行榜
+                        var monthRankings = eval(json.monthRankings);
+                        $.each(monthRankings,function(index,monthRankings){
+                            var listNum = index+1;
+                            if (listNum == 1) {
+                                var htmlText="<li><i>"+monthRankings.ranking+"</i><i><img src='"+monthRankings.headImage+"'></i><i>"+monthRankings.name+"</i><i>"+monthRankings.subscribeCount+"</i><i>"+monthRankings.leftCount+"</i><i>"+monthRankings.unit+"</i><i></i><i></i></li>";
+                            }if (listNum >1){
+                                var htmlText="<li><i>"+monthRankings.ranking+"</i><i><img src='"+monthRankings.headImage+"'></i><i>"+monthRankings.name+"</i><i>"+monthRankings.subscribeCount+"</i><i>"+monthRankings.leftCount+"</i><i>"+monthRankings.unit+"</i><i></i></li>";
+                            }
+                            $("#monthRankingsUl").append(htmlText);
+                        });
+
+                        //分行历史个人总排行
+                        var totalEmployee = json.totalEmployee;
+                        $('#totalEmployeeRanking').html(totalEmployee.ranking); //排名
+                        $('#totalEmployeeImg').attr('src',totalEmployee.headImage); //头像
+                        $('#totalEmployeeName').html(totalEmployee.name); //名字
+                        $('#totalEmployeeNewAdd').html(totalEmployee.subscribeCount); //新增
+//                        $('#totalEmployeeCancleCount').html(totalEmployee.cancleCount); //取消
+                        $('#totalEmployeeGrowth').html(totalEmployee.leftCount); //净增
+                        $('#totalEmployeeUnit').html(totalEmployee.unit); //单位
+                        //分行历史总排行榜
+                        var totalRankings = eval(json.totalRankings);
+                        $.each(totalRankings,function(index,totalRankings){
+                            var listNum = index+1;
+                            if (listNum == 1) {
+                                var htmlText="<li><i>"+totalRankings.ranking+"</i><i><img src='"+totalRankings.headImage+"'></i><i>"+totalRankings.name+"</i><i>"+totalRankings.subscribeCount+"</i><i>"+totalRankings.leftCount+"</i><i>"+totalRankings.unit+"</i><i></i><i></i></li>";
+                            }if (listNum >1){
+                                var htmlText="<li><i>"+totalRankings.ranking+"</i><i><img src='"+totalRankings.headImage+"'></i><i>"+totalRankings.name+"</i><i>"+totalRankings.subscribeCount+"</i><i>"+totalRankings.leftCount+"</i><i>"+totalRankings.unit+"</i><i></i></li>";
+                            }
+                            $("#totalRankingsUl").append(htmlText);
+                        });
+                        setTimeout(function () {
+                            PerssonalRankingFenhang();
+                        },500);
+                    },
+                    error: function(){
+//                        alert("10001");
+                    }
+                });
+            }
+            Fenhang();
+            //支行排行
+            function Zhihang() {
+              $.ajax({
+                type: "GET",
+                async: true,
+                url: "http://activity.cnmobi.com.cn/activity/employee/home.html?type=2",
+                dataType: "jsonp",
+                jsonpCallback:"callbackfunction",
+                success: function(json){
+
+                      $("#dayRankingsUlZhihang").html("");
+                      $("#monthRankingsUlZhihang").html("");
+                      $("#totalRankingsUlZhihang").html("");
+
+                      //本日个人排行
+                      var dayEmployee = json.dayEmployee;
+                      $('#dayEmployeeRankingZhihang').html(dayEmployee.ranking); //排名
+                      $('#dayEmployeeImgZhihang').attr('src',dayEmployee.headImage); //头像
+                      $('#dayEmployeeNameZhihang').html(dayEmployee.name); //名字
+                      $('#dayEmployeeNewAddZhihang').html(dayEmployee.subscribeCount); //新增
+//                      $('#dayEmployeeCancleCountZhihang').html(dayEmployee.cancleCount); //取消
+                      $('#dayEmployeeGrowthZhihang').html(dayEmployee.leftCount); //净增
+                      $('#dayEmployeeUnitZhihang').html(dayEmployee.unit); //单位
+                      //本日排行榜
+                      var dayRankings = eval(json.dayRankings);
+                      $.each(dayRankings,function(index,dayRankings){
+                        var listNum = index+1;
+                        if (listNum == 1) {
+                          var htmlText="<li><i>"+dayRankings.ranking+"</i><i><img src='"+dayRankings.headImage+"'></i><i>"+dayRankings.name+"</i><i>"+dayRankings.subscribeCount+"</i><i>"+dayRankings.leftCount+"</i><i>"+dayRankings.unit+"</i><i></i><i></i></li>";
+                        }if (listNum >1){
+                          var htmlText="<li><i>"+dayRankings.ranking+"</i><i><img src='"+dayRankings.headImage+"'></i><i>"+dayRankings.name+"</i><i>"+dayRankings.subscribeCount+"</i><i>"+dayRankings.leftCount+"</i><i>"+dayRankings.unit+"</i><i></i></li>";
+                        }
+                        $("#dayRankingsUlZhihang").append(htmlText);
+                      });
+
+                      //本月个人排行
+                      var monthEmployee = json.monthEmployee;
+                      $('#monthEmployeeRankingZhihang').html(monthEmployee.ranking); //排名
+                      $('#monthEmployeeImgZhihang').attr('src',monthEmployee.headImage); //头像
+                      $('#monthEmployeeNameZhihang').html(monthEmployee.name); //名字
+                      $('#monthEmployeeNewAddZhihang').html(monthEmployee.subscribeCount); //新增
+//                      $('#monthEmployeeCancleCountZhihang').html(monthEmployee.cancleCount); //取消
+                      $('#monthEmployeeGrowthZhihang').html(monthEmployee.leftCount); //净增
+                      $('#monthEmployeeUnitZhihang').html(monthEmployee.unit); //单位
+                      //本月排行榜
+                      var monthRankings = eval(json.monthRankings);
+                      $.each(monthRankings,function(index,monthRankings){
+                        var listNum = index+1;
+                        if (listNum == 1) {
+                          var htmlText="<li><i>"+monthRankings.ranking+"</i><i><img src='"+monthRankings.headImage+"'></i><i>"+monthRankings.name+"</i><i>"+monthRankings.subscribeCount+"</i><i>"+monthRankings.leftCount+"</i><i>"+monthRankings.unit+"</i><i></i><i></i></li>";
+                        }if (listNum >1){
+                          var htmlText="<li><i>"+monthRankings.ranking+"</i><i><img src='"+monthRankings.headImage+"'></i><i>"+monthRankings.name+"</i><i>"+monthRankings.subscribeCount+"</i><i>"+monthRankings.leftCount+"</i><i>"+monthRankings.unit+"</i><i></i></li>";
+                        }
+                        $("#monthRankingsUlZhihang").append(htmlText);
+                      });
+
+                      //支行历史个人总排行
+                      var totalEmployee = json.totalEmployee;
+                      $('#totalEmployeeRankingZhihang').html(totalEmployee.ranking); //排名
+                      $('#totalEmployeeImgZhihang').attr('src',totalEmployee.headImage); //头像
+                      $('#totalEmployeeNameZhihang').html(totalEmployee.name); //名字
+                      $('#totalEmployeeNewAddZhihang').html(totalEmployee.subscribeCount); //新增
+//                      $('#totalEmployeeCancleCountZhihang').html(totalEmployee.cancleCount); //取消
+                      $('#totalEmployeeGrowthZhihang').html(totalEmployee.leftCount); //净增
+                      $('#totalEmployeeUnitZhihang').html(totalEmployee.unit); //单位
+                      //支行历史总排行榜
+                      var totalRankings = eval(json.totalRankings);
+                      $.each(totalRankings,function(index,totalRankings){
+                        var listNum = index+1;
+                        if (listNum == 1) {
+                          var htmlText="<li><i>"+totalRankings.ranking+"</i><i><img src='"+totalRankings.headImage+"'></i><i>"+totalRankings.name+"</i><i>"+totalRankings.subscribeCount+"</i><i>"+totalRankings.leftCount+"</i><i>"+totalRankings.unit+"</i><i></i><i></i></li>";
+                        }if (listNum >1){
+                          var htmlText="<li><i>"+totalRankings.ranking+"</i><i><img src='"+totalRankings.headImage+"'></i><i>"+totalRankings.name+"</i><i>"+totalRankings.subscribeCount+"</i><i>"+totalRankings.leftCount+"</i><i>"+totalRankings.unit+"</i><i></i></li>";
+                        }
+                        $("#totalRankingsUlZhihang").append(htmlText);
+                      });
+                      setTimeout(function () {
+                          PerssonalRankingZhihang();
+                      },500);
+                },
+                error: function(){
+//                    alert("10010");
+                }
+              });
+            }
+
+            var PersonalRankingFen,
+                PersonalIntegralFen,
+                PersonalRankingZhi,
+                PersonalIntegralZhi;
+            //头部排行分行
+            function PerssonalRankingFenhang() {
+              $.ajax({
+                type: "GET",
+                async: true,
+                url: "http://activity.cnmobi.com.cn/activity/employee/home.html?type=1",
+                dataType: "jsonp",
+                jsonpCallback:"callbackfunction",
+                success: function(json){
+                    PersonalRankingFen = json.ranking;
+                    PersonalIntegralFen = json.integral;
+                    $('#ranking').html("");
+                    $('#integral').html("");
+                    $('#ranking').html(PersonalRankingFen);
+                    $('#integral').html(PersonalIntegralFen);
+                    setTimeout(function () {
+                        Zhihang();
+                    },500);
+                },
+                error: function(){
+                    //alert("10001");
+                }
+              });
+            };
+
+            //头部排行支行
+            function PerssonalRankingZhihang() {
+                $.ajax({
+                    type: "GET",
+                    async: true,
+                    url: "http://activity.cnmobi.com.cn/activity/employee/home.html?type=2",
+                    dataType: "jsonp",
+                    jsonpCallback:"callbackfunction",
+                    success: function(json){
+                        PersonalRankingZhi = json.ranking;
+                        PersonalIntegralZhi = json.integral;
+                    },
+                    error: function(){
+                        alert("10011");
+                    }
+                });
+            };
+
+            //选择分行/支行
+            $(".bankTag").on("click",function () {
+                var clickThisData = $(this).attr("data");
+                if(clickThisData ==1){
+                    $(".levelLine").animate({left:"15%"});
+                    var target = $($(this).attr("target"));
+                    $(".bankTag").removeClass("bankTagSelected");
+                    $(this).addClass("bankTagSelected");
+                    $(".bankTagChoose").hide();
+                    target.show();
+                    $('#ranking').html("");
+                    $('#integral').html("");
+                    $('#ranking').html(PersonalRankingFen);
+                    $('#integral').html(PersonalIntegralFen);
+                }else if(clickThisData ==2){
+                    $(".levelLine").animate({left:"65%"});
+                    var target = $($(this).attr("target"));
+                    $(".bankTag").removeClass("bankTagSelected");
+                    $(this).addClass("bankTagSelected");
+                    $(".bankTagChoose").hide();
+                    target.show();
+                    $('#ranking').html("");
+                    $('#integral').html("");
+                    $('#ranking').html(PersonalRankingZhi);
+                    $('#integral').html(PersonalIntegralZhi);
+                }
+            });
+            //兑换
+            $("#ToExchange").on('click',function () {
+                location.href = "goods_details-new.html"
+            });
+            //推荐码
+            $("#recommendCode").on('click',function () {
+                location.href = "recommend_code.html";
+            });
+            //规则
+            $("#goPageRule").on('click',function () {
+                location.href = 'rule.html';
+            });
+            //判断手机横竖屏状态：
+            function hengshuping(){
+                if(window.orientation==180||window.orientation==0){
+                    //alert("竖屏状态！")
+                }
+                if(window.orientation==90||window.orientation==-90){
+                    alert("请切回竖屏状态观看页面比较适宜")//横屏状态
+                }
+            }
+            window.addEventListener("onorientationchange" in window ? "orientationchange" : "resize", hengshuping, false);
+        })
+    </script>
+</body>
+</html>
