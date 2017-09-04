@@ -67,7 +67,7 @@
           <!-- 商品描述 -->
           <div class="goods_describe">
            <div class="describe_txt" id="goods_describe"></div>
-            <div class="describe_txt">亲，该奖品将在兑换成功后的3~5个工作日派发物流</div>
+            <div class="describe_txt">亲，该奖品将在兑换成功后的15个工作日内派发物流</div>
            <!-- <div class="describe_txt">规格：100元卡</div> -->
           </div>
           <div class="empty15"></div>
@@ -105,6 +105,10 @@
                 <span>手机号码</span>
                 <input type="text" name="" placeholder="请输入手机号码" maxlength="11" onkeyup="this.value=this.value.replace(/\D/g,'')"  onafterpaste="this.value=this.value.replace(/\D/g,'')" id="phone">
             </div>
+            <div class="txt_box_list addressBox">
+                 <span>地址:</span>
+                 <textarea id="address"></textarea>
+             </div>
             <div class="confirm_btn">
               <div class="confirm" id="confirm">确定</div>
             </div>
@@ -114,12 +118,12 @@
        <div class="exchangeSuccessPupoBox" style="display: none">
             <div class="exchangeSuccessBox">
                 <div class="tipIcon"><i class="iconfont">&#xe659;</i></div>
-                <div class="exchangeSuccessText">恭喜你，奖品已兑换成功，奖品于3~5个工作日下发到《工银有礼》，请注意查收！</div>
+                <div class="exchangeSuccessText">恭喜你，奖品已兑换成功，奖品于15个工作日内派发物流</div>
                 <div class="exchangeSuccessBtn" id="yesIGotIt">确定</div>
 
             </div>
        </div>
-       <div class="tipPopuBox">
+       <div class="tipPopuBox" style="display: none">
           <div class="tipPopu">
             <div class="tipPopuCont">亲，该奖品正在采购中，敬请期待<br/>《请按左上角返回上一页》</div>
        </div>
@@ -128,15 +132,17 @@
        <script type="text/javascript">
            $(function () {
 
+               var num = Number($("#Num").html()),
+                   integral_num = $("#integral_num"),
+                   Price = 0,
+                   Total = $("#integral_num");
+
                //兑换成功--确认
                $("#yesIGotIt").on('click',function () {
                    $(".exchangeSuccessPupoBox").hide();
                    location.replace("index.html");
                });
-               var num = $("#Num").html(),
-                   integral_num = $("#integral_num"),
-                   Price = 0,
-                   Total = $("#integral_num");
+               
                //减少奖品数量
                $("#subtract").on('click',function () {
                    if( num <=1 ){
@@ -162,10 +168,104 @@
                };
                //我要兑换
                $("#exchange").on('click',function () {
-                   console.log(num);
-                   $('.tipPopuBox').show();
-                   
+                  $('.popu_box').show();
+                  
                });
+               $(".hide_btn").on('click',function(){
+                   $('.popu_box').hide();
+               });
+              //确认兑换
+               $("#confirm").on('click',function(){
+                  var receiver = $("#receiver").val().toString();
+                  var phone = $("#phone").val().toString();
+                  var address = $("#address").val().toString();
+                  var isChinaName = /^[\u4E00-\u9FA5]{1,6}$/;
+                  var telreg = /^1[3|4|5|7|8][0-9]\d{8}$|^\d{8}$/;
+
+                  if (num == 0){
+                      $('.tipBox').fadeIn();
+                      $('#tip').text("请选择要兑换奖品的数量");
+                      setTimeout(function() { $('.tipBox').fadeOut(); },1500);
+                      return false;
+                  }
+
+                  if (receiver.length == 0) {
+                      //alert("请输入收货人姓名");
+                      $('.tipBox').fadeIn();
+                      $('#tip').text("请输入收货人姓名");
+                      setTimeout(function () {
+                          $('.tipBox').fadeOut();
+                      },1800);
+                      $("#rec_name").focus();
+                      return false;
+                  }else if (!isChinaName.test(receiver)) {
+
+                      //alert("请准确输入您的收货人姓名");
+                      $('.tipBox').fadeIn();
+                      $('#tip').text("请准确输入您的收货人姓名");
+                      setTimeout(function () {
+                          $('.tipBox').fadeOut();
+                      },1800);
+                      $("#receiver").val("").focus();
+                      return false;
+                  }else if(phone.length !== 11) {
+                      //alert("请输入您的真实手机号");
+                      $('.tipBox').fadeIn();
+                      $('#tip').text("请输入您的真实手机号");
+                      setTimeout(function () {
+                          $('.tipBox').fadeOut();
+                      },1800);
+                      $("#phone").focus();
+                      return false;
+                  }else if(!telreg.test(phone)) {
+                      //alert("请输入正确的手机号！");
+                      $('.tipBox').fadeIn();
+                      $('#tip').text("请输入正确的手机号！");
+                      setTimeout(function () {
+                          $('.tipBox').fadeOut();
+                      },1800);
+                      $("#rec_iphone").focus();
+                      return false;
+                  }else if( address.length == 0 ){                     
+                      $('.tipBox').fadeIn();
+                      $('#tip').text("请输入您的收货地址！");
+                      setTimeout(function () {
+                         $('.tipBox').fadeOut();
+                      },1800);
+                      return false;
+                  }else {
+                      $(this).attr("disabled",true);
+                      var id = "xiaomi";
+                      $.ajax({
+                          type: "GET",
+                          async: true,
+                          url: "http://activity.cnmobi.com.cn/activity/employee/exchange.html",
+                          dataType: "jsonp",
+                          data:{
+                              number: num,
+                              id: id,
+                              phone: phone,
+                              name: name,
+                              address: address
+                          },
+                          jsonpCallback:"callbackfunction",
+                          success: function(json){
+                              if(json.code == 0){
+                                  $('.popu_box').hide();
+                                  $(".exchangeSuccessPupoBox").show();
+                              }else if(json.code == 40057){
+                                  $('.tipBox').fadeIn();
+                                  $('#tip').text("亲，您现在的积分不够兑换所选择的奖品哦");
+                                  setTimeout(function() { $('.tipBox').fadeOut(); },1500);
+                              }
+                              $("#exchange").attr("disabled",false);
+                          },
+                          error: function(){
+                              alert("系统异常");
+                          }
+                      });
+                  }
+               })
 
                //判断手机横竖屏状态：
                function hengshuping(){
