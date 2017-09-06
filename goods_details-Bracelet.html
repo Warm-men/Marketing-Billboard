@@ -236,9 +236,11 @@
                   }else {
                       $(this).attr("disabled",true);
                       var id = "xiaomi";
+                      address = encodeURI(address);
                       $.ajax({
-                          type: "GET",
+                          type: "POST",
                           async: true,
+                          contentType:"application/x-www-form-urlencoded; charset=UTF-8",
                           url: "http://activity.cnmobi.com.cn/activity/employee/exchange.html",
                           dataType: "jsonp",
                           data:{

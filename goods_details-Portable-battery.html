@@ -166,10 +166,68 @@
                    console.log(Price)
                    Total.html(Price);
                };
+               // function callAddress(){
+               //      var docUrl = document.URL;
+               //      var requestUrl = "http://icbcigo.cnmobi.com.cn/wsb/api/weixin/call/address?channel=5&url="+docUrl;
+               //      $.ajax({
+               //          type:"GET",
+               //          url:requestUrl,
+               //          dataType:"jsonp",
+               //          jsonpCallback:"callbackfunction",
+               //          success: function(data){
+               //            alert("55")
+               //              var obj = eval(data);
+               //              if(40400==obj.code){
+               //                  WeixinJSBridge.invoke(
+               //                      'editAddress',
+               //                      {
+               //                          appId:'wx9ed4d88f5451ead6',
+               //                          scope:'jsapi_address',
+               //                          signType:'sha1',
+               //                          addrSign:obj.addrSign,
+               //                          timeStamp:obj.timestamp,
+               //                          nonceStr:obj.nonceStr
+               //                      },
+               //                      function (res) {
+               //                          // res存有地址信息
+               //                          if(res['userName']==null){
+               //                              alert("请选择一个地址");
+               //                          }else{
+
+               //                              var userName = res['userName'];
+               //                              var telNumber = res['telNumber'];
+               //                              var proviceFirstStageName = res['proviceFirstStageName'];
+               //                              var addressCitySecondStageName = res['addressCitySecondStageName'];
+               //                              var addressCountiesThirdStageName = res['addressCountiesThirdStageName'];
+               //                              var addressDetailInfo = res['addressDetailInfo'];
+               //                              var address = proviceFirstStageName+addressCitySecondStageName+addressCountiesThirdStageName+addressDetailInfo;
+               //                              alert(userName)
+               //                              alert(telNumber)
+               //                              alert(address)
+               //                              $("#receiver").val(userName);
+               //                              $("#phone").val(telNumber);
+               //                              $("#address").val(address);
+
+               //                              var info = "姓名："+userName+"    电话："+telNumber+ "    地址："+address;
+               //                              $("#info").val(info);
+               //                          }
+                                        
+
+               //                      }
+               //                  );
+               //              }else{
+                                
+               //              }
+               //          },
+               //          complete: function( xhr, status ) {
+                            
+               //          }
+               //      });
+               //  }
                //我要兑换
                $("#exchange").on('click',function () {
                   $('.popu_box').show();
-                  
+                  //callAddress();
                });
                $(".hide_btn").on('click',function(){
                    $('.popu_box').hide();
@@ -236,9 +294,11 @@
                   }else {
                       $(this).attr("disabled",true);
                       var id = "philips";
+                      address = encodeURI(address);
                       $.ajax({
-                          type: "GET",
+                          type: "POST",
                           async: true,
+                          contentType:"application/x-www-form-urlencoded; charset=UTF-8",
                           url: "http://activity.cnmobi.com.cn/activity/employee/exchange.html",
                           dataType: "jsonp",
                           data:{
