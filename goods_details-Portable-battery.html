@@ -57,7 +57,7 @@
             <div class="goods_name" id="goods_name">充电宝</div>
             <div class="goods_prize_txt">
                <!--<label class="select_goods"><img src="img/choose.png"></label>-->
-               <label class="prize" id="price">3580</label>
+               <label class="prize" id="price">3600</label>
                积分
             </div>
             <!--<div class="reference_prize" id="reference_prize"></div>-->
@@ -77,7 +77,7 @@
 
           <div class="exchange">
             <div class="integral_box fl">
-              <div class="integral_txt">总价：<label class="integral_num" id="integral_num">3580</label><label class="integral">积分</label></div>
+              <div class="integral_txt">总价：<label class="integral_num" id="integral_num">3600</label><label class="integral">积分</label></div>
             </div>
             <div class="integralAddBox fl">
                 <i class="iconfont" id="subtract">&#xe64c;</i>
@@ -295,6 +295,7 @@
                       $(this).attr("disabled",true);
                       var id = "philips";
                       address = encodeURI(address);
+                      receiver = encodeURI(receiver);
                       $.ajax({
                           type: "POST",
                           async: true,
@@ -305,7 +306,7 @@
                               number: num,
                               id: id,
                               phone: phone,
-                              name: name,
+                              name: receiver,
                               address: address
                           },
                           jsonpCallback:"callbackfunction",

@@ -84,13 +84,13 @@ input[type="button"], input[type="submit"], input[type="text"] {-webkit-appearan
     display: none;
 }
 .tipBox label{
-    padding: 3px 5px;
+    
     display: inline-block;
     background: #393838;
-    border-radius: 8px;
+    border-radius: 4px;
     line-height: 1.5;
     color: #ffffff;
-    padding: 0 5px;
+    padding: 5px 10px;
 }
 /*绑定页面*/
 .bindPage{
