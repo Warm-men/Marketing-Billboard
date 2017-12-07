@@ -90,7 +90,11 @@ input[type="button"], input[type="submit"], input[type="text"] {-webkit-appearan
     border-radius: 4px;
     line-height: 1.5;
     color: #ffffff;
+<<<<<<< HEAD
     padding: 5px 10px;
+=======
+
+>>>>>>> 8235b81d2daaa9ae57158e12d12ef6c11247b8d9
 }
 /*绑定页面*/
 .bindPage{
