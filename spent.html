@@ -83,10 +83,49 @@
               <div class="spt_box clearfix">
                 <div class="spt_goods_box fl"><div class="spt_goods "><img src="img/goods5.png" ></div></div>
                 <div class="goods_txt_box fl">
-                  <div class="goods_txt" id="feilipuText">飞利浦20000mAh移动电源（采购中，敬请期待）</div>
+                  <div class="goods_txt" id="feilipuText">飞利浦14000mAh移动电源（采购中，敬请期待）</div>
                   <div class="value_ingots">
                       <span><label>3600</label>积分</span>
                       <span>&nbsp;库存：&nbsp;&nbsp;<i class="Portable-battery"></i>份</span>
+                  </div>
+                </div>
+              </div>
+            </a>
+
+            <a href="#" id="meidiKettle">
+              <div class="spt_box clearfix">
+                <div class="spt_goods_box fl"><div class="spt_goods "><img src="img/goods5.jpg" ></div></div>
+                <div class="goods_txt_box fl">
+                  <div class="goods_txt" id="meidiKettleText">美的电热水壶（采购中，敬请期待）</div>
+                  <div class="value_ingots">
+                      <span><label>2000</label>积分</span>
+                      <span>&nbsp;库存：&nbsp;&nbsp;<i class="meidiKettle-num"></i>份</span>
+                  </div>
+                </div>
+              </div>
+            </a>
+
+            <a href="#" id="shanmoshiCup">
+              <div class="spt_box clearfix">
+                <div class="spt_goods_box fl"><div class="spt_goods "><img src="img/goods7.jpg" ></div></div>
+                <div class="goods_txt_box fl">
+                  <div class="goods_txt" id="shanmoshiCupText">膳魔师保温杯（采购中，敬请期待）</div>
+                  <div class="value_ingots">
+                      <span><label>2600</label>积分</span>
+                      <span>&nbsp;库存：&nbsp;&nbsp;<i class="shanmoshiCup-num"></i>份</span>
+                  </div>
+                </div>
+              </div>
+            </a>
+
+            <a href="#" id="xinxiuliBag">
+              <div class="spt_box clearfix">
+                <div class="spt_goods_box fl"><div class="spt_goods "><img src="img/goods8.jpg" ></div></div>
+                <div class="goods_txt_box fl">
+                  <div class="goods_txt" id="xinxiuliBagText">新秀丽双肩包（采购中，敬请期待）</div>
+                  <div class="value_ingots">
+                      <span><label>3000</label>积分</span>
+                      <span>&nbsp;库存：&nbsp;&nbsp;<i class="shanmoshiCup-num"></i>份</span>
                   </div>
                 </div>
               </div>
@@ -112,7 +151,7 @@
        </script>
        <script type="text/javascript">
             $(function(){
-                var telephoneFare, Bracelet, PortableBattery;
+                var telephoneFare, Bracelet, PortableBattery,meidiKettleNum,shanmoshiCupNum,xinxiuliBagNum;
 
                 $.ajax({
                     type: "GET",
@@ -129,17 +168,17 @@
                                     $("#xiaomi").attr("href","#");
                                     $("#xiaomiText").html("小米手环2（采购中，敬请期待）");
                                 }else {
-                                    $("#xiaomi").attr("href","http://icbcigo.cnmobi.com.cn/Marketing-Billboard/goods_details-Bracelet.html?v=1522");
+                                    $("#xiaomi").attr("href","http://icbcigo.cnmobi.com.cn/Marketing-Billboard/goods_details-Bracelet.html?v=121212");
                                     $("#xiaomiText").html("小米手环2");
                                 }
                             }else if (obj.giftId === "philips14000"){
                                 PortableBattery = obj.left
                                 if (PortableBattery == 0) {
                                     $("#feilipu").attr("href","#");
-                                    $("#feilipuText").html("飞利浦20000mAh移动电源（采购中，敬请期待）");
+                                    $("#feilipuText").html("飞利浦14000mAh移动电源（采购中，敬请期待）");
                                 }else {
-                                    $("#feilipu").attr("href","http://icbcigo.cnmobi.com.cn/Marketing-Billboard/goods_details-Portable-battery-new14000.html");
-                                    $("#feilipuText").html("飞利浦20000mAh移动电源");
+                                    $("#feilipu").attr("href","http://icbcigo.cnmobi.com.cn/Marketing-Billboard/goods_details-Portable-battery-new14000.html?v=121212");
+                                    $("#feilipuText").html("飞利浦14000mAh移动电源");
                                 }
                             }else if (obj.giftId === "phone"){
                                 telephoneFare = obj.left
@@ -147,17 +186,52 @@
                                     $("#dianhuafei").attr("href","#");
                                     $("#dianhuafeiText").html("30元电话费(采购中，敬请期待)");
                                 }else {
-                                    $("#dianhuafei").attr("href","http://icbcigo.cnmobi.com.cn/Marketing-Billboard/goods_details-telephone-fare.html?v=11266");
+                                    $("#dianhuafei").attr("href","http://icbcigo.cnmobi.com.cn/Marketing-Billboard/goods_details-telephone-fare.html?v=121212");
                                     $("#dianhuafeiText").html("30元电话费");
+                                }
+                            }else if (obj.giftId === "meidiKettle"){
+                                meidiKettleNum = obj.left
+                                if (meidiKettleNum == 0) {
+                                    $("#meidiKettle").attr("href","#");
+                                    $("#meidiKettleText").html("美的电热水壶（采购中，敬请期待）");
+                                }else {
+                                    $("#meidiKettle").attr("href","http://icbcigo.cnmobi.com.cn/Marketing-Billboard/goods_details-meidiKettle.html?v=12121212");
+                                    $("#meidiKettleText").html("美的电热水壶");
+                                }
+                            }else if (obj.giftId === "shanmoshiCup"){
+                                shanmoshiCupNum = obj.left
+                                if (shanmoshiCupNum == 0) {
+                                    $("#shanmoshiCup").attr("href","#");
+                                    $("#shanmoshiCupText").html("膳魔师保温杯(采购中，敬请期待)");
+                                }else {
+                                    $("#shanmoshiCup").attr("href","http://icbcigo.cnmobi.com.cn/Marketing-Billboard/goods_details-shanmoshiCup.html?v=121212");
+                                    $("#shanmoshiCupText").html("膳魔师保温杯");
+                                }
+                            }else if (obj.giftId === "xinxiuliBag"){
+                                xinxiuliBagNum = obj.left
+                                if (xinxiuliBagNum == 0) {
+                                    $("#xinxiuliBag").attr("href","#");
+                                    $("#xinxiuliBagText").html("新秀丽双肩包(采购中，敬请期待)");
+                                }else {
+                                    $("#xinxiuliBag").attr("href","http://icbcigo.cnmobi.com.cn/Marketing-Billboard/goods_details-xinxiuliBag.html?v=121212");
+                                    $("#xinxiuliBagText").html("新秀丽双肩包");
                                 }
                             }
                         });
                         $('.telephone-fare').html("");
                         $('.Bracelet').html("");
                         $('.Portable-battery').html("");
+                        $('.meidiKettle-num').html("");
+                        $('.xinxiuliBag-num').html("");
+                        $('.shanmoshiCup-num').html("");
+
                         $('.telephone-fare').html(telephoneFare);
                         $('.Bracelet').html(Bracelet);
                         $('.Portable-battery').html(PortableBattery);
+
+                        $('.meidiKettle-num').html(meidiKettleNum);
+                        $('.xinxiuliBag-num').html(shanmoshiCupNum);
+                        $('.shanmoshiCup-num').html(xinxiuliBagNum);
                     },
                     error: function(json){
                         alert(json.msg);

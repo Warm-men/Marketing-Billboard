@@ -93,21 +93,27 @@
                   <div id="wrapper">
                     <div class="first">
                       <dl id="ticker">
-                        <div class="placard_box">
+                        <!-- <div class="placard_box">
                           <div class="placard">
                             <div class="placard_con">二期活动将于9月1日正式开始，届时礼品更丰富新增话小米手环2、充电宝等，存量积分长期有效，敬请期待</div>
+                          </div>
+                        </div> -->
+
+                        <div class="placard_box">
+                          <div class="placard">
+                            <div class="placard_con">双12当天增粉积分翻倍，礼品扩充，敬请期待</div>
                           </div>
                         </div>
 
                         <div class="placard_box">
                           <div class="placard">
-                            <div class="placard_con">二期活动将于9月1日正式开始，届时礼品更丰富新增话小米手环2、充电宝等，存量积分长期有效，敬请期待</div>
+                            <div class="placard_con">双12当天增粉积分翻倍，礼品扩充，敬请期待</div>
                           </div>
                         </div>
 
                         <div class="placard_box">
                           <div class="placard">
-                            <div class="placard_con">二期活动将于9月1日正式开始，届时礼品更丰富新增话小米手环2、充电宝等，存量积分长期有效，敬请期待</div>
+                            <div class="placard_con">双12当天增粉积分翻倍，礼品扩充，敬请期待</div>
                           </div>
                         </div>
                       </dl>
@@ -859,7 +865,8 @@
                     dataType: "jsonp",
                     jsonpCallback:"callbackfunction",
                     success: function(json){
-
+                        //公告
+                        $(".placard_con").html("双12当天增粉积分翻倍，礼品扩充，敬请期待");
                         $("#dayRankingsUlZhihang").html("");
                         $("#monthRankingsUlZhihang").html("");
                         $("#totalRankingsUlZhihang").html("");
@@ -1064,7 +1071,7 @@
                         PersonalIntegralZhi = json.integral;
                     },
                     error: function(){
-                        alert("10011");
+                        //alert("10011");
                     }
                 });
             };
@@ -1098,7 +1105,7 @@
             });
             //兑换
             $("#ToExchange").on('click',function () {
-                location.href = "http://icbcigo.cnmobi.com.cn/Marketing-Billboard/spent.html?v=1205"
+                location.href = "http://icbcigo.cnmobi.com.cn/Marketing-Billboard/spent.html?v=1212121212"
             });
             //推荐码
             $("#recommendCode").on('click',function () {

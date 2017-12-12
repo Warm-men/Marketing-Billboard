@@ -63,7 +63,7 @@
           <!-- 商品描述 -->
           <div class="goods_describe">
            <div class="describe_txt" id="goods_describe"></div>
-            <div class="describe_txt" style="font-weight: bold; color: #FD200F;line-height: 1.8; font-size: 1.38rem;" id="tip_warming">该电话卡将通过工银有礼在7个工作日内发放，请留意</div>
+            <div class="describe_txt" style="font-weight: bold; color: #FD200F;line-height: 1.8; font-size: 1.38rem;" id="tip_warming">该电话卡将通过工银有礼在10个工作日内发放，请留意</div>
            <!-- <div class="describe_txt">规格：100元卡</div> -->
           </div>
           <div class="empty15"></div>
@@ -107,7 +107,7 @@
        <div class="exchangeSuccessPupoBox" style="display: none">
             <div class="exchangeSuccessBox">
                 <div class="tipIcon"><i class="iconfont">&#xe659;</i></div>
-                <div class="exchangeSuccessText">恭喜你，奖品已兑换成功，奖品于7个工作日内充值到账</div>
+                <div class="exchangeSuccessText">恭喜你，奖品已兑换成功，奖品于10个工作日内充值到账</div>
                 <div class="exchangeSuccessBtn" id="yesIGotIt">确定</div>
 
             </div>
@@ -164,7 +164,8 @@
                   
                   var phone = $("#phone").val().toString();
                   var telreg = /^1[3|4|5|7|8][0-9]\d{8}$|^\d{8}$/;
-
+                  $(this).hide();
+                  $("#padding").show();
                   if (num == 0){
                       $('.tipBox').fadeIn();
                       $('#tip').text("请选择要兑换奖品的数量");
@@ -207,6 +208,8 @@
                           },
                           jsonpCallback:"callbackfunction",
                           success: function(json){
+                              $(this).show();
+                              $("#padding").hide();
                               //提示信息
                               $("#tip_warming").html("该电话卡将通过工银有礼在7个工作日内发放，请留意");
                               if(json.code == 0){
